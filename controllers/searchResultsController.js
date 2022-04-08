@@ -1,8 +1,7 @@
 let searchResultsController = {
     "searchResults": function (req, res) {
-        res.render("searchResults");
+        res.render("search-results");
     } 
-
 }
 
 module.exports = searchResultsController;
