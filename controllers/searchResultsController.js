@@ -1,5 +1,5 @@
 let searchResultsController = {
-    "searchResults": function (req, res) {
+    searchResults: function (req, res) {
         res.render("search-results");
     } 
 }

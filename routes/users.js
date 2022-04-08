@@ -2,8 +2,9 @@ var express = require('express');
 const usersController = require('../controllers/usersController');
 var router = express.Router();
 
-/* GET users listing. */
 router.get('/users/profile', usersController.profile);
+
+router.get("/users/profile-edit", usersController.profileEdit)
 
 router.get("/users/register", usersController.register);
 
