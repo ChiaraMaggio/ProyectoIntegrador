@@ -1,6 +1,6 @@
 let mainController = {
     main: function (req, res) {
-        res.render("main");
+        return res.render("main");
     }
 }
 
