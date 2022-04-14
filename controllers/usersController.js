@@ -11,7 +11,7 @@ let usersController = {
         return res.render("profile", {usuario: usuario.lista[0].nombreDeUsuario, foto: usuario.lista[0].fotoDePerfil, productos: usuario.lista[0].cantidadDeProductos, seguidores: usuario.lista[0].cantidadDeSeguidores, comentarios: usuario.lista[0].comentarios});
     },
     profileEdit: function (req, res) {
-        return res.render("profile-edit");
+        return res.render("profile-edit", {usuario: usuario.lista[0].nombreDeUsuario});
     }  
 }
 

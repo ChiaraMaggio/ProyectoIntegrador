@@ -4,7 +4,7 @@
 
 /*====== Variables ======*/
 :root {
-  --yellow: #EAC926;
+  --blue: #0c3663;
   --dark-blue: #03264C;
   --light-blue: #1259c3;
   --gray: #666666;
@@ -68,7 +68,7 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: var(--yellow);
+  background-color: var(--blue);
 }
 
 .main-header_home-link,
@@ -77,6 +77,7 @@ hr {
 }
 
 .main-header_credit-link {
+  color: var(--light-gray);
   font-size: 1.5em;
   margin-top: 20px;
   text-align: center;
@@ -129,10 +130,12 @@ hr {
 
 .left-navbar,
 .right-navbar {
+  color: var(--light-gray);
   font-size: 1.5em;
 }
 
 .logout{
+  color: var(--light-gray);
   background: transparent;
   border: 0px;
   cursor: pointer;
@@ -175,7 +178,7 @@ hr {
 }
 
 .product-box {
-  background-color: #ffffff;
+  background-color: #0c3663;
   border-radius: 5px;
   overflow: hidden;
   transition: 300ms;
@@ -199,6 +202,7 @@ hr {
 }
 
 .product-box_data h2 {
+  color: var(--light-gray) ;
   font-size: 2.4em;
   font-weight: 300;
   margin: 0;
@@ -214,7 +218,7 @@ hr {
 .product-box_data p {
   font-size: 1.5em;
   width: 100%;
-  color: var(--gray);
+  color: var(--light-gray);
   margin: 0;
   height: 0;
   transition: 300ms;
