@@ -1,5 +1,5 @@
 /*====== Fonts ======*/
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300&display=swap");
 
 
 /*====== Variables ======*/
@@ -10,7 +10,7 @@
   --gray: #666666;
   --light-gray: #ebebeb;
   --green: #39b54a;
-  --base-font-family: 'Roboto', sans-serif
+  --base-font-family: "oswald";
 }
 
 
@@ -28,7 +28,6 @@ body {
 
 body {
   font-family: var(--base-font-family);
-  font-weight: 300;
   background-color: var(--light-gray);
 }
 
@@ -154,14 +153,9 @@ hr {
 }
 
 
-
 /*====== Banner ======*/
-.banner {
-  /* background-image: url(/images/banner-funkos2.jpg); */
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-  height: 85.44px;
+.banner-img {
+  width: 100%;
 }
 
 
@@ -172,8 +166,10 @@ hr {
 }
 
 .products-title {
-  font-size: 2.4em;
+  font-family: "bebas neue";
+  font-size: 3em;
   font-weight: 400;
+  margin: 10px 0 10px 0;
   color: var(--gray);
 }
 
@@ -488,10 +484,6 @@ textarea.form-input {
   .main-header_credit-link {
     margin-top: 0;
     text-align: right;
-  }
-
-  .banner {
-    height: 320px;
   }
 
   .btn-toggle-navbar {
