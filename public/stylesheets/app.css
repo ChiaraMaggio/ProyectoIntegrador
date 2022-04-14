@@ -157,11 +157,11 @@ hr {
 
 /*====== Banner ======*/
 .banner {
-  background-image: url(/images/img-home-banner.jpg);
+  /* background-image: url(/images/banner-funkos2.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 100px;
+  height: 85.44px;
 }
 
 
