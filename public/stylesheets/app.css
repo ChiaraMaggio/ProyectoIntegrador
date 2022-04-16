@@ -1,5 +1,5 @@
 /*====== Fonts ======*/
-@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@300&display=swap");
 
 
 /*====== Variables ======*/
@@ -39,14 +39,10 @@ ol {
 }
 
 a {
+  font-family: 'Anton', sans-serif;
   display: inline-block;
   text-decoration: none;
   color: inherit;
-}
-
-figure {
-  margin: 0;
-  padding: 0;
 }
 
 img {
@@ -183,6 +179,7 @@ hr {
 
 .product-box a {
   display: block;
+  font-family: "oswald";
 }
 
 .product-box_image {
