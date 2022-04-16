@@ -19,23 +19,18 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-								<strong> <a href="/users/profile">Nombre usuario: </a> </strong>
-								 Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore magnam, praesentium explicabo inventore molestias facilis labore. Fugit ipsa mollitia odit inventore consequuntur.</p>
-							</div>
-						</article>
-						<article>
-							<img src="https://via.placeholder.com/35" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="/users/profile">Nombre usuario: </a> </strong>
-									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur.</p>
-							</div>
-						</article>
-						<article>
+						<% for (let i = 0; i<comentarios.lenght; i++) { %> 
+							<article>
+								<img src="https://via.placeholder.com/35" alt="">
+									<div class="data">
+										<p class="user">
+										<strong><a href="/users/profile"><%= comentarios[i].nombreDeUsuario %></a></strong>
+										<%=comentarios[i].textoComentario%></p>
+									</div>
+							</article>
+						<% } %>
+
+						<!-- <article>
 							<img src="https://via.placeholder.com/35" alt="">
 							<div class="data">
 								<p class="user">
@@ -60,7 +55,7 @@
 									Texto del comentario que escribió el usuario Lorem ipsum dolor sit amet consectetur adipisicing elit.
 									Tempora doloribus enim aspernatur fugit corrupti suscipit sit dolore</p>
 							</div>
-						</article>
+						</article> -->
 
 					</section>
 					<form class="form" action="" method="POST">
