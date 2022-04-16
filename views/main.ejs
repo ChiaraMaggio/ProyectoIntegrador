@@ -16,26 +16,56 @@
 				<h2 class="products-title">Novedades</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
+				<% for (let i = 0; i < productos.length; i++) {%>
+					<div class="col-12 col-sm-6 col-lg-3">
+						<section class="product-box">
+							<a href="/product">
+								<div class="product-box_image">
+									<img src="<%=productos[i].foto%>" alt="">
+								</div>
+								<article class="product-box_data">
+									<h2><%=productos[i].nombre %></h2>
+									<p><%=productos[i].descripcion%> </p>
+									<p><%=productos[i].franquicia%> </p> 
+									<p><%=productos[i].comentarios%> </p>
+								</article>
+							</a>
+						</section>
+					</div> 
+				<% } %>;
+		</div>
+	</div>
 
-
-
-			<% for (let i = 0; i < productos.length; i++) {%>
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/products">
-							<figure class="product-box_image">
-								<a href="/product"><img src="<%=productos[i].foto%>" alt=""></a>
-							</figure>
-							<article class="product-box_data">
-								<h2><%=productos[i].nombre %></h2>
-								<p><%=productos[i].descripcion%> </p>
-								<p><%=productos[i].franquicia%> </p> 
-							</article>
-						</a>
-					</section>
-				</div>
-			<% } %>;
+	<!-- Mas comentados -->
+	<div class="container products-wrapper">
+		<div class="row">
+			<div class="col-12">
+				<h2 class="products-title">Mas Comentados</h2>
+			</div>
+			<!-- Show the "ultimos" products -->
+				<% for (let i = 0; i < productos.length; i++) {%>
+					<div class="col-12 col-sm-6 col-lg-3">
+						<section class="product-box">
+							<a href="/product">
+								<div class="product-box_image">
+									<img src="<%=productos[i].foto%>" alt="">
+								</div>
+								<article class="product-box_data">
+									<h2><%=productos[i].nombre %></h2>
+									<p><%=productos[i].descripcion%> </p>
+									<p><%=productos[i].franquicia%> </p> 
+									<p><%=productos[i].comentarios%> </p>
+								</article>
+							</a>
+						</section>
+					</div>
+				<% } %>;
+		</div>
+	</div>
 			
 	<%- include("./partials/footer") %>
+</body>	
+</html>
+
 </body>	
 </html>

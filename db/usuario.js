@@ -2,7 +2,7 @@ let usuario = {
     lista: [
         {
             nombreDeUsuario: "Hugo Vaca Guzmán",
-            fotoDePerfil: "/images/users/HugoVacaGuzman.jpg", 
+            fotoDePerfil: "/images/users/VacaGuzman.jpg", 
             cantidadDeProductos: "500 productos",
             cantidadDeSeguidores: "7690 seguidores",
             comentarios: "1577 comentarios"
