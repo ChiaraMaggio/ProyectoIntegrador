@@ -294,6 +294,13 @@ hr {
   padding: 15px 0;
 }
 
+.nombres-footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5%;
+  
+}
+
 
 /*====== Product Detail ======*/
 .product-detail {
