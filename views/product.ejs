@@ -19,12 +19,12 @@
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
-						<% for (let i = 0; i<comentarios.lenght; i++) { %> 
+						<% for (let i = 0; i<comentarios.length; i++) { %> 
 							<article>
 								<img src="https://via.placeholder.com/35" alt="">
 									<div class="data">
 										<p class="user">
-										<strong><a href="/users/profile"><%= comentarios[i].nombreDeUsuario %></a></strong>
+										<strong><a href="/users/profile"><%= comentarios[i].usuario %></a></strong>
 										<%=comentarios[i].textoComentario%></p>
 									</div>
 							</article>

@@ -1,23 +1,23 @@
 let comentarios = [
         {
-            nombreDeUsuario: "Hugo Vaca Guzmán",
-            textoComentario: "Super tierno. El envío fue impecable"
+            usuario: "Hugo Vaca Guzmán",
+            textoComentario: "Super tierno. El envío fue re rápido. Llegó a los 2 días."
         },
         {
-            nombreDeUsuario: "Alberto Denjam",
-            textoComentario: "El vendedor nunca contestó"
+            usuario:"Alberto Denjam",
+            textoComentario: "El vendedor nunca contestó a mi pedido. Tampoco me dio un reembolso."
         },
         {
-            nombreDeUsuario: "Petrona Maguna",
-            textoComentario: "Comentario 3"
+            usuario: "Petrona Maguna",
+            textoComentario: "Hice compra mayorista y me hizo descuento!! Un genio."
         },
         {
-            nombreDeUsuario: "Olga Maggio",
-            textoComentario: "Comentario 4"
+            usuario: "Olga Maggio",
+            textoComentario: "Holaaa, tenés stock para ya?"
         },
         {
-            nombreDeUsuario: "Bernarda Teperman",
-            textoComentario: "Comentario 5"
+            usuario: "Bernarda Teperman",
+            textoComentario: "¿Haces envíos internacionales? Soy de España."
         },
     ];
  
