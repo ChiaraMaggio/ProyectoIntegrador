@@ -131,6 +131,7 @@ hr {
 
 .logout{
   color: var(--light-gray);
+  font-family: 'Anton', sans-serif;
   background: transparent;
   border: 0px;
   cursor: pointer;
