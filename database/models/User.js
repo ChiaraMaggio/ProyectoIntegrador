@@ -2,49 +2,49 @@ module.exports = function (sequelize, dataTypes){
     let alias = "Users";
     
     let cols = {
-        user_id:{
+        user_id: {
             autoIncrement: true,
             primaryKey: true,
             type: dataTypes.INTEGER
         },
-        user_name:{
+        user_name: {
             allowNull: false,
             type: dataTypes.STRING
         },
-        user_lastname:{
+        user_lastname: {
             allowNull: false,
             type: dataTypes.STRING
         },
-        birth_date:{
+        birth_date: {
             allowNull: false,
             type: dataTypes.DATE
         },
-        user_email:{
+        user_email: {
             allowNull: false,
             type: dataTypes.STRING
         },
-        user_password:{
+        user_password: {
             allowNull: false,
             type: dataTypes.STRING
         },
-        avatar:{
+        avatar: {
             type: dataTypes.STRING
         },
-        number_of_products:{
-            allowNull: false,
-            type: dataTypes.INTEGER
-        },
-        number_of_comments:{
+        number_of_products: {
             allowNull: false,
             type: dataTypes.INTEGER
         },
-        remember_token:{
+        number_of_comments: {
+            allowNull: false,
+            type: dataTypes.INTEGER
+        },
+        remember_token: {
             type: dataTypes.STRING
         },
-        created_at:{
-            type: dataTypes.DATE 
+        created_at: {
+            type: dataTypes.DATE /* consultar tipo de dato de created_at y updated_at en clase */
         },
-        updated_at:{
+        updated_at: {
             type: dataTypes.DATE
         }
     };
@@ -56,5 +56,5 @@ module.exports = function (sequelize, dataTypes){
 
     const User = sequelize.define(alias, cols, config);
     
-    return Usuario;
+    return User;
 }
