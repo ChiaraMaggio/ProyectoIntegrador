@@ -30,11 +30,15 @@ module.exports = function (sequelize, dataTypes){
         avatar: {
             type: dataTypes.STRING
         },
-        number_of_products: {
+        products: {
             allowNull: false,
             type: dataTypes.INTEGER
         },
-        number_of_comments: {
+        comments: {
+            allowNull: false,
+            type: dataTypes.INTEGER
+        },
+        followers: {
             allowNull: false,
             type: dataTypes.INTEGER
         },
