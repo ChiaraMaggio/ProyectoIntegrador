@@ -34,9 +34,6 @@ module.exports = function (sequelize, dataTypes){
             allowNull: false,
             type: dataTypes.INTEGER
         },
-        remember_token: {
-            type: dataTypes.STRING
-        },
         created_at: {
             type: dataTypes.DATE
         },
