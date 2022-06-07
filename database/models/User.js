@@ -30,14 +30,6 @@ module.exports = function (sequelize, dataTypes){
         avatar: {
             type: dataTypes.STRING
         },
-        products: {
-            allowNull: false,
-            type: dataTypes.INTEGER
-        },
-        comments: {
-            allowNull: false,
-            type: dataTypes.INTEGER
-        },
         followers: {
             allowNull: false,
             type: dataTypes.INTEGER
@@ -46,7 +38,7 @@ module.exports = function (sequelize, dataTypes){
             type: dataTypes.STRING
         },
         created_at: {
-            type: dataTypes.DATE /* consultar tipo de dato de created_at y updated_at en clase */
+            type: dataTypes.DATE
         },
         updated_at: {
             type: dataTypes.DATE
