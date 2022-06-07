@@ -30,14 +30,6 @@ module.exports = function (sequelize, dataTypes){
         avatar: {
             type: dataTypes.STRING
         },
-        products: {
-            allowNull: false,
-            type: dataTypes.INTEGER
-        },
-        comments: {
-            allowNull: false,
-            type: dataTypes.INTEGER
-        },
         followers: {
             allowNull: false,
             type: dataTypes.INTEGER
