@@ -9,6 +9,10 @@ let productController = {
     
     productAdd: function (req, res) {
         return res.render("product-add", {usuario: usuario.lista[0].nombreDeUsuario});
+    },
+
+    storeProductAdd: function (params) {
+        
     }
 }
 
