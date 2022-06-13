@@ -11,21 +11,24 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12">
-				<form action="/" method="get">
+				<form action="/" method="post" enctype="multipart/form-data">
 					<label for="email" class="form-label">Email:</label>
 					<input type="email" name="email" value="" class="form-input">
 					
-					<label for="usuario" class="form-label">Nombre de usuario:</label>
-					<input type="text" name="usuario" value="" class="form-input">
+					<label for="nombre" class="form-label">Nombre:</label>
+					<input type="text" name="nombre" value="" class="form-input">
 					
+					<label for="apellido" class="form-label">Apellido:</label>
+					<input type="text" name="apellido" value="" class="form-input">
+
 					<label for="contraseña" class="form-label">Contraseña:</label>
 					<input type="password" name="contraseña" value="" class="form-input"> 
 					
 					<label for="nacimiento" class="form-label">Fecha de nacimiento:</label>
 					<input type="date" name="nacimiento" value="" class="form-input">
 				
-					<label for="documento" class="form-label">Número de documento:</label>
-					<input type="number" name="documento" value="" class="form-input">
+					<!-- <label for="documento" class="form-label">Número de documento:</label>
+					<input type="number" name="documento" value="" class="form-input"> -->
 				
 					<label for="foto" class="form-label">Foto de perfil:</label>
 					<input type="file" name="foto" value="" class="form-input">
