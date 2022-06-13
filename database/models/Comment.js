@@ -1,8 +1,8 @@
 module.exports = function (sequelize, dataTypes){
-    let alias = "Comments";
+    let alias = "Comment";
     
     let cols = {
-        comment_id: {
+        id: {
             autoIncrement: true,
             primaryKey: true,
             type: dataTypes.INTEGER
@@ -30,10 +30,22 @@ module.exports = function (sequelize, dataTypes){
 
     let config = {
         tableName: "comments",
-        timeStamps: false
+        timeStamps: false,
+        underscored: true
     };
 
     const Comment = sequelize.define(alias, cols, config);
+
+    /* Comment.associate = function (models) {
+        Comment.belongsTo(models.Product, {
+            as: "productscomments",
+            foreignKey: "product_id"
+        }),
+        Comment.belongsTo(models.User, {
+            as: "userscomments",
+            foreignKey: "user_id"
+        })       
+    }  */
 
     return Comment;
 }
