@@ -1,24 +1,108 @@
 const usuario = require("../db/usuario");
 
 const productos = require ("../db/productos");
+const User = require("../database/models/User");
 
 let usersController = {
     register: function (req, res) {
         return res.render("register");
     },
-    login: function (req, res) {
-        return res.render("login");
+
+    registerStore: function (req, res) {
+        let errors = {};
+        if (req.body.email == "") {
+            errors.message = "El email es obligatorio";
+            console.log(errors); /* guardar el error en locals */
+            return res.render("register");
+        } else if (req.body.nombre == "") {
+            errors.message = "Ingrese su nombre";
+            console.log(errors); /* guardar el error en locals */
+            return res.render("register");
+        } else if (req.body.apellido == "") {
+            errors.message = "Ingrese su apellido";
+            console.log(errors); /* guardar el error en locals */
+            return res.render("register");
+        } else if (req.body.contraseña == "") {
+            errors.message = "La contraseña es obligatoria";
+            console.log(errors); /* guardar el error en locals */
+            return res.render("register");
+        } else if (req.body.nacimiento == "") {
+            errors.message = "Ingrese su fecha de nacimiento";
+            console.log(errors); /* guardar el error en locals */
+            return res.render("register"); 
+        } /* else if (req.body.documento = "") {
+            errors.message = "Ingrese su número de documento";
+            console.log(errors); /* guardar el error en locals 
+            return res.render("register");
+        } */ 
+        else if (req.file.mimetype !== "image/png" && req.file.mimetype !== "image/jpg" && req.file.mimetype !== "image/jpeg") {
+            errors.message = "El archivo debe ser jpg o png";
+            console.log(errors); /* guardar el error en locals */
+            return res.render("register");
+        } else {
+            User.findOne({
+                where: [{user_email: req.body.email}]
+            })
+            .then(function (user) {
+                if (user != null) {
+                    errors.message = "El email ya está registrado, por favor ingrese otro";
+                    console.log(errors); /* guardar el error en locals */
+                    return res.render("register");
+                } else {
+                    let user = {
+                        user_name: req.body.usuario,
+                        user_lastname: req.body.apellido,
+                        user_email: req.body.email,
+                        birth_date: req.body.nacimiento,
+                        user_password: bcrypt.hashSync(req.body.contraseña, 10),
+                        avatar: req.file.filename
+                    }
+
+                    User.create(user)
+                        .then(function (user) {
+                            return res.redirect("/");
+                        })
+                        .catch(function (error) {
+                            console.log(error);                            
+                        })
+                }
+            })
+
+        }       
     },
+
+    login: function (req, res) { /* preguntar si hacen falta dos métodos en el caso de login */
+        if (req.session.User != undefined) {
+            return res.redirect("/");
+        } else {
+            return res.render("login");
+        }
+    },
+
+    loginStore: function (req, res) {
+        let errors = {};
+        
+    },
+
     profile: function (req, res) {
         return res.render("profile", {usuario: usuario.lista[0].nombreDeUsuario, foto: usuario.lista[0].fotoDePerfil, misProductos: usuario.lista[0].cantidadDeProductos, seguidores: usuario.lista[0].cantidadDeSeguidores, comentarios: usuario.lista[0].comentarios, productos:productos});
     },
+
     profileEdit: function (req, res) {
         return res.render("profile-edit", {usuario: usuario.lista[0].nombreDeUsuario});
     },
+
+    profileEditStore: function (req, res) {
+        if (req.session.User == undefined) {
+            return res.redirect("/");
+        } else {
+
+        }
+    }
+
     /* productos: function (req, res) {
         return res.render("mis-productos", {productos:productos});
-    }    */
-
+    } */
 
 }
 
