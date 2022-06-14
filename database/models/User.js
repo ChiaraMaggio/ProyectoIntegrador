@@ -55,7 +55,7 @@ module.exports = function (sequelize, dataTypes){
 
     const User = sequelize.define(alias, cols, config);
 
-    /* User.associate = function (models) {
+    User.associate = function (models) {
         User.belongsToMany(models.Follower, {
             as: "usersfollowers",
             through: "users_followers",
@@ -71,7 +71,7 @@ module.exports = function (sequelize, dataTypes){
             as: "userscomments",
             foreignKey: "comment_id"
         })
-    }; */
+    }; 
 
     return User;
 }
