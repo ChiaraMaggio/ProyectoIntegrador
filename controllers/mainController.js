@@ -1,9 +1,6 @@
 let productos = require ("../db/productos"); 
 
-
 const db = require("../database/models"); /* requerimos la conexión a la base de datos y todos los modelos */
-
-//const db = require("../database/models"); /* requerimos la conexión a la base de datos y todos los modelos */
 
 let mainController = {
     main: function (req, res) {
