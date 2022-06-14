@@ -1,7 +1,8 @@
 const usuario = require("../db/usuario");
 
 const productos = require ("../db/productos");
-const bcrypt = require("bcryptjs");
+
+const bcryptjs = require("bcryptjs");
 const db = require("../database/models");
 const Usuario = db.User;
 
@@ -56,20 +57,19 @@ let usersController = {
                         user_lastname: req.body.apellido,
                         user_email: req.body.email,
                         birth_date: req.body.nacimiento,
-                        user_password: bcrypt.hashSync(req.body.contraseña, 10),
+                        user_password: bcryptjs.hashSync(req.body.contraseña, 10),
                         avatar: req.file.filename
                     }
 
                     Usuario.create(user)
                         .then(function (user) {
-                            return res.redirect("/");
+                            return res.redirect("/users/login");
                         })
                         .catch(function (error) {
                             console.log(error);                            
                         })
                 }
             })
-
         }       
     },
 
