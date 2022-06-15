@@ -12,6 +12,10 @@
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12">
 				<form action="/users/register" method="post" enctype="multipart/form-data">
+					<% if(locals.errors) { %>
+						<p class="error"><%= errors.message %></p>
+					<% } %> 
+					
 					<label for="email" class="form-label">Email:</label>
 					<input type="email" name="email" value="" class="form-input">
 					
@@ -21,8 +25,8 @@
 					<label for="apellido" class="form-label">Apellido:</label>
 					<input type="text" name="apellido" value="" class="form-input">
 
-					<label for="contraseña" class="form-label">Contraseña:</label>
-					<input type="password" name="contraseña" value="" class="form-input"> 
+					<label for="password" class="form-label">Contraseña:</label>
+					<input type="password" name="password" value="" class="form-input"> 
 					
 					<label for="nacimiento" class="form-label">Fecha de nacimiento:</label>
 					<input type="date" name="nacimiento" value="" class="form-input">
