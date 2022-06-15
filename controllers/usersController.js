@@ -24,7 +24,7 @@ let usersController = {
             errors.message = "Ingrese su apellido";
             console.log(errors); /* guardar el error en locals */
             return res.render("register");
-        } else if (req.body.contraseña == "") {
+        } else if (req.body.password == "") {
             errors.message = "La contraseña es obligatoria";
             console.log(errors); /* guardar el error en locals */
             return res.render("register");
@@ -52,11 +52,11 @@ let usersController = {
                     return res.render("register");
                 } else {
                     let user = {
-                        user_name: req.body.usuario,
+                        user_name: req.body.nombre,
                         user_lastname: req.body.apellido,
                         user_email: req.body.email,
                         birth_date: req.body.nacimiento,
-                        user_password: bcrypt.hashSync(req.body.contraseña, 10),
+                        user_password: bcryptjs.hashSync(req.body.password, 10),
                         avatar: req.file.filename
                     }
 
@@ -69,16 +69,15 @@ let usersController = {
                         })
                 }
             })
-
         }       
     },
 
-    login: function (req, res) { /* preguntar si hacen falta dos métodos en el caso de login */
-        if (req.session.User != undefined) {
+    login: function (req, res) { /* preguntar si hacen falta dos métodos en el caso de login
+        if (req.session.user != undefined) {
             return res.redirect("/");
         } else {
             return res.render("login");
-        }
+        } */
     },
 
     loginStore: function (req, res) {
