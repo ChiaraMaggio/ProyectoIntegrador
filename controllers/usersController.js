@@ -1,8 +1,9 @@
 const usuario = require("../db/usuario");
 
 const productos = require ("../db/productos");
-const bcrypt = require()
+const bcryptjs = require("bcryptjs")
 const db = require("../database/models");
+const { localsName } = require("ejs");
 const Usuario = db.User;
 
 let usersController = {
@@ -14,31 +15,33 @@ let usersController = {
         let errors = {};
         if (req.body.email == "") {
             errors.message = "El email es obligatorio";
+            res.locals.errors = errors;
             console.log(errors); /* guardar el error en locals */
             return res.render("register");
         } else if (req.body.nombre == "") {
             errors.message = "Ingrese su nombre";
+            res.locals.errors = errors;
             console.log(errors); /* guardar el error en locals */
             return res.render("register");
         } else if (req.body.apellido == "") {
             errors.message = "Ingrese su apellido";
+            res.locals.errors = errors;
             console.log(errors); /* guardar el error en locals */
             return res.render("register");
         } else if (req.body.password == "") {
             errors.message = "La contraseña es obligatoria";
+            res.locals.errors = errors;
             console.log(errors); /* guardar el error en locals */
             return res.render("register");
         } else if (req.body.nacimiento == "") {
             errors.message = "Ingrese su fecha de nacimiento";
+            res.locals.errors = errors;
             console.log(errors); /* guardar el error en locals */
             return res.render("register"); 
-        } /* else if (req.body.documento = "") {
-            errors.message = "Ingrese su número de documento";
-            console.log(errors); /* guardar el error en locals 
-            return res.render("register");
-        } */ 
+        } 
         else if (req.file.mimetype !== "image/png" && req.file.mimetype !== "image/jpg" && req.file.mimetype !== "image/jpeg") {
             errors.message = "El archivo debe ser jpg o png";
+            res.locals.errors = errors;
             console.log(errors); /* guardar el error en locals */
             return res.render("register");
         } else {
