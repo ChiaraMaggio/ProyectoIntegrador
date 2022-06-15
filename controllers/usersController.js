@@ -1,7 +1,9 @@
 const usuario = require("../db/usuario");
 
 const productos = require ("../db/productos");
-const User = require("../database/models/User");
+const bcrypt = require()
+const db = require("../database/models");
+const Usuario = db.User;
 
 let usersController = {
     register: function (req, res) {
@@ -40,7 +42,7 @@ let usersController = {
             console.log(errors); /* guardar el error en locals */
             return res.render("register");
         } else {
-            User.findOne({
+            Usuario.findOne({
                 where: [{user_email: req.body.email}]
             })
             .then(function (user) {
@@ -58,9 +60,9 @@ let usersController = {
                         avatar: req.file.filename
                     }
 
-                    User.create(user)
+                    Usuario.create(user)
                         .then(function (user) {
-                            return res.redirect("/");
+                            return res.redirect("/users/login");
                         })
                         .catch(function (error) {
                             console.log(error);                            
