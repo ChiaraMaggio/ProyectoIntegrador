@@ -28,4 +28,6 @@ router.post("/register", upload.single("avatar"), usersController.registerStore)
 router.get("/login", usersController.login);
 router.post("/login", usersController.loginStore);
 
+router.post("/logout", usersController.logout);
+
 module.exports = router;

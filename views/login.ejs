@@ -10,15 +10,19 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12">
-				<form action="/" method="post">
-					<label for="usuario" class="form-label">Nombre de usuario:</label>
-					<input type="text" name="usuario" value="" class="form-input">
+				<form action="/users/login" method="post">
+					<% if(locals.errors){%>
+						<p class="error"> <%= errors.message %> </p>
+					<% } %>
 
-					<label for="contraseña" class="form-label">Contraseña:</label>
-					<input type="password" name="contraseña" value="" class="form-input">
+					<label for="email" class="form-label">Email:</label>
+					<input type="email" name="email" value="" class="form-input">
 
-					<label for="recordarme" class="form-label">Tildá la siguiente casilla si querés recordar tu información de inicio de sesión:</label>
-					<input type="checkbox" name="recordarme" class="form-input">
+					<label for="password" class="form-label">Contraseña:</label>
+					<input type="password" name="password" value="" class="form-input">
+
+					<label for="remember" class="form-label">Tildá la siguiente casilla si querés recordar tu información de inicio de sesión:</label>
+					<input type="checkbox" name="remember" class="form-input">
 					
 					<label for="enviar" class="form-label">Hacé clic debajo para iniciar sesión:</label>
 					<button type="submit" name="enviar" class="form-input">Iniciar sesión</button>
