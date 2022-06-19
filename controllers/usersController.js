@@ -33,12 +33,12 @@ let usersController = {
             res.locals.errors = errors; /* guardar el error en locals */
             console.log(errors); 
             return res.render("register");
-        } /* else if (req.body.password.value < 3) {
+        } else if (req.body.password.length < 3) {
             errors.message = "La contraseña debe tener al menos 3 caracteres";
-            res.locals.errors = errors; /* guardar el error en locals 
-            console.log(errors); 
+            res.locals.errors = errors; /* guardar el error en locals */
+            console.log(errors);  
             return res.render("register"); 
-        }*/ else if (req.body.nacimiento == "") {
+        } else if (req.body.nacimiento == "") {
             errors.message = "Ingrese su fecha de nacimiento";
             res.locals.errors = errors; /* guardar el error en locals */
             console.log(errors); 
