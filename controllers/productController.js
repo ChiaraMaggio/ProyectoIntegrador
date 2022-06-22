@@ -62,7 +62,7 @@ let productController = {
                 where: [{id: req.params.id}]
             })
             .then(function () {
-                return res.redirect(`/products/${Producto.id}`)/* TITAN HELP < */
+                return res.redirect(`/products/${data.product_id}`)/* TITAN HELP < */
             })
             .catch(error => {
                 console.log(error)
@@ -147,7 +147,7 @@ let productController = {
     productUpdate: function(req, res){
         let id = req.params.id;
  
-        db.Product.findByPk(id)
+        Producto.findByPk(id)
         .then((data) => {
             const product = {
                 product_name: req.body.name,
@@ -161,7 +161,7 @@ let productController = {
                 product.product_image = req.file.filename;
             }
    
-            db.Product.update(product, {
+            Producto.update(product, {
                 where: {
                     id: id
                 }
