@@ -63,11 +63,13 @@ module.exports = function (sequelize, dataTypes){
         User.hasMany(models.Product, {
             as: "products",
             foreignKey: "user_id",
-        }),
+/*             onDelete: 'cascade'
+ */        }),
         User.hasMany(models.Comment, {
             as: "comments",
-            foreignKey: "user_id"
-        })
+            foreignKey: "user_id",
+/*             onDelete: 'cascade'
+ */        })
     }; 
 
     return User;

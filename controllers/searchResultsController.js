@@ -1,48 +1,62 @@
 const productos = require ("../db/productos");
-let db = require ("../database/models");
-let Op = db.sequelize.Op;
+const db = require("../database/models/index");
+const op = db.Sequelize.op
 
 let searchResultsController = {
-    searchResults: function(req, res) {
-       
-        let product = req.query.search;
-        let errors = {}
-    
-        if(product == ""){
-        errors.message = "No completaste este campo";
-        res.locals.errors = errors ;
-        return res.render('search-results.ejs')
-        }else {
-            db.Product.findAll({
+    /* searchResults: function (req, res) {
+                return res.render("search-results", {productos:productos});
+            
+    }, */
+
+    searchResultsDetail: function (req, res) {
+       let product = req.query.search;
+       let errors = {}
+
+       if (product == "") {
+        errors.message = "El buscador no puede estar vacio"
+        res.locals.errors = errors;
+        console.log(errors);
+        return res.render ("search-results.ejs");
+       }
+       else {
+            db.product.findAll({
                 where: {
                     [Op.or]:[
-                        {product_name: {[Op.like]: "%"+ product + "%", }},
-                        {product_description: {[Op.like]: "%" + product + "%", }},
-                        {users_id: {[Op.like]: "%" + product + "%", }},
+                        {product_name:{[Op.like]:"%"+ product +"%"}},
+                        {product_description:{[Op.like]:"%"+ product +"%"}},
                     ]
-                    },
-                order: [
-                    ['product_name', 'ASC']
+                },
+                order:[
+                    ["product_name", "ASC"]
                 ],
-                include: [  
-                  { association: 'users' },
-                  { association: 'comments'}                           
-            ],
-            })
-              .then((data) => {
-                
-                  if(data != ''){
-                    return res.render('search-results.ejs', {data:data})
-                  }else{
-                    errors.message = "Lo sentimos, no hay resultados para su criterio de búsqueda " ;
-                    res.locals.errors = errors ;
-                    return res.render('search-results.ejs')
-                  }
-                })
-              .catch((e) => {
-                  console.log(e)
-              })
-        }},
-      }
+                limit: 4,
+                include: [
+                    {association: "users"},
+                    {association: "comments"},
+                ],
 
+            }) 
+
+            .then((data) => {
+            
+                if(data != ''){
+                  return res.render('search-results.ejs', {data:data})
+                }else{
+                  errors.message = "Lo sentimos, no hay resultados para su búsqueda " ;
+                  res.locals.errors = errors ;
+                  return res.render('search-results.ejs')
+                }
+              })
+            .catch(function (error) {
+                console.log(error);                            
+            })
+         
+
+        
+       } 
+    },
+}
+ 
 module.exports = searchResultsController;
+
+/* return res.render("search-results", {productos:productos}); */
