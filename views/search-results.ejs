@@ -18,18 +18,18 @@
 				</h3>
 				<% } else { %>
 			<!-- Show the "ultimos" products -->
-				<% for (let i = 0; i < 6; i++) {%>
+				<% for (let i = 0; i < productos.length; i++) {%>
 					<div class="col-12 col-sm-6 col-lg-3">
 						<section class="product-box">
-							<a href="/product/<%=productos[i].id%>">
+							<a href="/product/">
 								<div class="product-box_image">
-									<img src="<%=productos[i].foto%>" alt="">
+									<img src="<%=productos[i].product_image%>" alt="">
 								</div>
 								<article class="product-box_data">
-									<h2><%=productos[i].nombre %></h2>
-									<p><%=productos[i].descripcion%> </p>
-									<p><%=productos[i].franquicia%> </p> 
-									<p><%=productos[i].comentarios%> </p>
+									<h2><%=productos[i].product_name %></h2>
+									<p><%=productos[i].product_description%> </p>
+									<p><%=productos[i].franchise%> </p> 
+						
 								</article>
 							</a>
 						</section>

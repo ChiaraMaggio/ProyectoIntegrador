@@ -1,6 +1,7 @@
 const productos = require ("../db/productos");
-const db = require("../database/models/index");
-const op = db.Sequelize.op
+const db = require("../database/models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op
 
 let searchResultsController = {
     /* searchResults: function (req, res) {
@@ -9,26 +10,21 @@ let searchResultsController = {
     }, */
 
     searchResultsDetail: function (req, res) {
-       let product = req.query.search;
+       let busqueda = req.query.search;
        let errors = {}
-
-       if (product == "") {
+            
+       if (busqueda == "") {
         errors.message = "El buscador no puede estar vacio"
         res.locals.errors = errors;
         console.log(errors);
         return res.render ("search-results.ejs");
        }
        else {
-            db.product.findAll({
+            console.log(busqueda)
+            db.Product.findAll({
                 where: {
-                    [Op.or]:[
-                        {product_name:{[Op.like]:"%"+ product +"%"}},
-                        {product_description:{[Op.like]:"%"+ product +"%"}},
-                    ]
+                    product_name:{[Op.like]: '%'+ req.query.search + '%'},
                 },
-                order:[
-                    ["product_name", "ASC"]
-                ],
                 limit: 4,
                 include: [
                     {association: "users"},
@@ -38,9 +34,9 @@ let searchResultsController = {
             }) 
 
             .then((data) => {
-            
+                console.log(data)
                 if(data != ''){
-                  return res.render('search-results.ejs', {data:data})
+                  return res.render('search-results.ejs', {productos:data})
                 }else{
                   errors.message = "Lo sentimos, no hay resultados para su búsqueda " ;
                   res.locals.errors = errors ;
