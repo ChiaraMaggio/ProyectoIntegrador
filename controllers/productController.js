@@ -55,11 +55,7 @@ let productController = {
                 where: [{id: req.params.id}]
             })
             .then(function () {
-<<<<<<< HEAD
-                return res.redirect(`/products/${data.product_id}`)/* TITAN HELP < */
-=======
                 return res.redirect(`/products/${data.product_id}`);
->>>>>>> ae3cf863d0b8181d218dc95025d237b9108f42de
             })
             .catch(error => {
                 console.log(error);
@@ -120,35 +116,12 @@ let productController = {
     },
 
     productUpdate: function(req, res){
-<<<<<<< HEAD
-        let id = req.params.id;
- 
-        Producto.findByPk(id)
-        .then((data) => {
-            const product = {
-                product_name: req.body.name,
-                product_image: "",
-                product_description: req.body.description,
-            }
-           
-            if(req.file == undefined){
-                product.product_image = data.product_image;
-            }else{
-                product.product_image = req.file.filename;
-            }
-   
-            Producto.update(product, {
-                where: {
-                    id: id
-                }
-=======
         let product = {
             product_name: req.body.nombre,
             product_description: req.body.descripcion,
         };
             Producto.update(product, {
                 where: {id: req.params.id}
->>>>>>> ae3cf863d0b8181d218dc95025d237b9108f42de
             })
             .then(function(){
                 return res.redirect(`/products/${req.params.id}`);

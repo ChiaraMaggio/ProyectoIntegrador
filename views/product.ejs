@@ -8,42 +8,7 @@
 	<% } %> 
 		
 	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%= productos[0].nombre%> </h2> 
-			<p class="product-detail-description">
-				<a href="/product/add">Editar</a>
-			</p>
-		</div>
-		<div class="product-detail">
-			<div class="row">
-				<article class="col-12 col-lg-8 product-detail-info">
-					<img src="<%=productos[0].foto%>" alt="" class="product-detail-img">
-					<p class="product-detail-description"><%=productos[0].descripcion%></p>
-				</article>
-				<div class="col-12 col-lg-4">
-					<section class="comments">
-						<% for (let i = 0; i<comentarios.length; i++) { %> 
-							<article>
-								<img src="https://via.placeholder.com/35" alt="">
-									<div class="data">
-										<p class="user">
-										<strong><a href="/users/profile"><%= comentarios[i].usuario %></a></strong>
-										<%=comentarios[i].textoComentario%></p>
-									</div>
-							</article>
-						<% } %>
-
-
-					</section>
-					<form class="form" action="" method="POST">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
-						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
-					</form>
-					<hr>
-				</div>
-			</div>
-			</div>
+	
 			<div class="product-detail">
 				<div class="rowrow">
 					<article class="col-12 col-lg-8 product-detail-info">
