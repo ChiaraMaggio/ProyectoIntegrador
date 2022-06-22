@@ -12,6 +12,11 @@
 			<div class="col-12">
 				<h2 class="products-title">Resultados de búsqueda</h2>
 			</div>
+				<% if (locals.errors) { %>
+				<h3>
+					<%= errors.message %>
+				</h3>
+				<% } else { %>
 			<!-- Show the "ultimos" products -->
 				<% for (let i = 0; i < 6; i++) {%>
 					<div class="col-12 col-sm-6 col-lg-3">
@@ -30,6 +35,7 @@
 						</section>
 					</div>
 				<% } %>;
+				<% } %>
 		</div>
 	</div>		
 			
