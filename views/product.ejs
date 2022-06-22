@@ -45,7 +45,7 @@
 								<img src="/images/avatars/<%= data.comments[i].users.avatar %>">
 								<div class="data">
 									<p class="user">
-									<strong> <a href="/users/profile/<%= data.comments[i].users.id %>"> <%= data.comments[i].users.user_name %> <%= data.comments[i].users.user_lastname %></a> </strong>
+										<a href="/users/profile/<%= data.comments[i].users.id %>"> <%= data.comments[i].users.user_name %> <%= data.comments[i].users.user_lastname %></a>
 									</p>
 									<p class="user"> <%= data.comments[i].comment_text %> </p>
 									<% if(locals.user) { %>
