@@ -13,7 +13,7 @@ let searchResultsController = {
        let errors = {}
 
        if (product == "") {
-        errors.message = "Este campo no puede estar vacio"
+        errors.message = "El buscador no puede estar vacio"
         res.locals.errors = errors;
         console.log(errors);
         return res.render ("search-results.ejs");
@@ -31,8 +31,8 @@ let searchResultsController = {
                 ],
                 limit: 4,
                 include: [
-                    {association: "usersproducts"},
-                    {association: "productscomment"},
+                    {association: "users"},
+                    {association: "comments"},
                 ],
 
             }) 

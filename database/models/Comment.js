@@ -7,30 +7,28 @@ module.exports = function (sequelize, dataTypes){
             primaryKey: true,
             type: dataTypes.INTEGER
         },  
-        comment_user: {
-            allowNull: false,
+        comment_text: {
             type: dataTypes.STRING
         },
-        comment_text: {
-            allowNull: false,
-            type: dataTypes.STRING
+        updated_at: {
+            allowNull:true,
+            type: dataTypes.DATE
         },
         created_at: {
+            allowNull: true,
             type: dataTypes.DATE 
         },
         product_id: {
-            allowNull: false,
             type: dataTypes.INTEGER
         },
         user_id: {
-            allowNull: false,
             type: dataTypes.INTEGER
         }
     };
 
     let config = {
         tableName: "comments",
-        timeStamps: false,
+        timeStamps: true,
         underscored: true
     };
 
@@ -38,11 +36,11 @@ module.exports = function (sequelize, dataTypes){
 
     Comment.associate = function (models) {
         Comment.belongsTo(models.Product, {
-            as: "productscomments",
+            as: "products",
             foreignKey: "product_id"
         }),
         Comment.belongsTo(models.User, {
-            as: "userscomments",
+            as: "users",
             foreignKey: "user_id"
         })       
     }  

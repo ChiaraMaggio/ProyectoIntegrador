@@ -1,18 +1,26 @@
 let productos = require ("../db/productos"); 
-
-const db = require("../database/models"); /* requerimos la conexión a la base de datos y todos los modelos */
-
+let db = require("../database/models"); /* requerimos la conexión a la base de datos y todos los modelos */
+let op = db.Sequelize.Op;
 let mainController = {
-    main: function (req, res) {
-        return res.render("main", {productos:productos});
-        /* db.Product.findAll()
-        .then(function (productos) {
-            return res.render("main", {productos: productos}); /* averiguar si va en singular como en el alias del modelo o en plural como en la tabla de la db
+    index: function(req,res) {
+        db.Product.findAll({
+          include: [  
+            { association: 'comments' }, 
+           /* Relacion de comentario con producto */
+                                    
+            {association: 'users'}
+            /*Relación de usuarios con productos*/
+          ],
+          order:  [ ["created_at", "DESC" ] ]
         })
-        .catch(function (error) {
-            console.log(error);
-        }) */
+        .then ((data) => {
+          return res.render ("main", {data: data})
+        })
+        .catch((error)=>{
+          console.log(error)
+      })
+      }
+      
     }
-}
 
 module.exports = mainController;

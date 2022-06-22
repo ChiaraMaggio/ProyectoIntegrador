@@ -8,11 +8,9 @@ module.exports = function (sequelize, dataTypes){
             type: dataTypes.INTEGER
         },
         product_name: {
-            allowNull: false,
             type: dataTypes.STRING
         },
         product_description: {
-            allowNull: false,
             type: dataTypes.STRING
         },
         product_image: {
@@ -25,13 +23,14 @@ module.exports = function (sequelize, dataTypes){
             type: dataTypes.INTEGER
         },
         user_id: {
-            allowNull: false,
             type: dataTypes.INTEGER
         },
         created_at: {
+            allowNull: true,
             type: dataTypes.DATE
         },
         updated_at: {
+            allowNull: true,
             type: dataTypes.DATE
         }
     };
@@ -40,18 +39,18 @@ module.exports = function (sequelize, dataTypes){
         tableName: "products",
         timeStamps: true,
         underscored: true
-    };
+        };
 
     const Product = sequelize.define(alias, cols,config);
     
     Product.associate = function(models) {
         Product.belongsTo(models.User, {
-            as: "usersproducts",
+            as: "users",
             foreignKey: "user_id"
         }),
         Product.hasMany(models.Comment, {
-            as: "productscomments",
-            foreignKey: "comment_id"
+            as: "comments",
+            foreignKey: "product_id"
         }) 
     };
 

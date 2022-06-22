@@ -43,10 +43,58 @@
 					<hr>
 				</div>
 			</div>
-		</div>
-	</div>
-	<!-- /product detail -->
-
+			</div>
+			<div class="product-detail">
+				<div class="rowrow">
+					<article class="col-12 col-lg-8 product-detail-info">
+						<h3 class="product-detail-description"><%= data.product_name %> </h3>
+						<img src="/images/products/<%= data.product_image %>" alt="Imagen" ><p class="product-detail-description"><%= data.product_description %></p>
+					<article>
+						<% if (locals.user){ %> 
+							<% if (locals.user.id == data.user_id){ %> 
+								<div>
+									<form action="/products/product-edit/<%= data.id %> " >
+										<button type="submit"> Editar <i class="fa fa-pen"></i> </button>
+									</form>
+									<form action="/products/product-delete/<%= data.id %>" method="POST">
+										<button type="submit"> Eliminar <i class="fas fa-trash"></i> </button>
+									</form>
+								</div>
+							<% } %>
+						<% } %>
+						</article>
+					</article>
+					<div class="col-12 col-lg-4">
+						<section class="comments">
+							
+							<% for(let i=0; i < data.comments.length ; i++ ){ %>
+								<article>
+								<img src="/images/avatars/<%= data.comments[i].users.avatar %>">
+								<div class="data">
+									<p class="user">
+									<strong> <a href="/users/profile/<%= data.comments[i].users.id %>"> <%= data.comments[i].users.user_name %> <%= data.comments[i].users.user_lastname %></a>  </strong>
+									</p>
+									<p class="user"> <%= data.comments[i].comment_text %> </p>
+									<% if(locals.user) { %>
+										<%if (locals.user.id == data.comments[i].users.id){ %> 
+										<form action="/products/delete/<%= data.comments[i].id %>" method="POST">
+											<button type="submit"> Eliminar <i class="fas fa-trash"></i> </button>
+										</form>
+										<% } %>
+									<% } %>
+								</div>
+								</article>
+							<% } %>
+	
+						</section>
+						<form class="form" action="/products/<%= data.id %>/comment" method="POST">
+							<input class="form-input" type="text"  name="text" value="" placeholder="Agregar comentario">
+							<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
+						</form>
+						<hr>
+					</div>
+				</div>
+			</div>       
 	<%- include("./partials/footer") %>
 </body>	
 </html>
