@@ -60,7 +60,7 @@ app.use(function (req, res, next) {
 /* rutas del sitio */
 app.use('/', mainRouter);
 app.use('/users', usersRouter);
-app.use('/product', productRouter);
+app.use('/products', productRouter);
 app.use('/results', searchResultsRouter);
 
 // catch 404 and forward to error handler

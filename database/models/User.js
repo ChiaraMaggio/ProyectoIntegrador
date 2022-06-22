@@ -8,32 +8,29 @@ module.exports = function (sequelize, dataTypes){
             type: dataTypes.INTEGER
         },
         user_name: {
-            allowNull: false,
             type: dataTypes.STRING
         },
         user_lastname: {
-            allowNull: false,
             type: dataTypes.STRING
         },
         birth_date: {
-            allowNull: false,
             type: dataTypes.DATE
         },
         user_email: {
-            allowNull: false,
             type: dataTypes.STRING
         },
         user_password: {
-            allowNull: false,
             type: dataTypes.STRING
         },
         avatar: {
             type: dataTypes.STRING
         },
         created_at: {
+            allowNull: true,
             type: dataTypes.DATE
         },
         updated_at: {
+            allowNull: true,
             type: dataTypes.DATE
         },
         follower_id: {
@@ -56,20 +53,20 @@ module.exports = function (sequelize, dataTypes){
     const User = sequelize.define(alias, cols, config);
 
     User.associate = function (models) {
-        User.belongsToMany(models.Follower, {
+       /*  User.belongsToMany(models.Follower, {
             as: "usersfollowers",
             through: "users_followers",
             foreignKey: "user_id",
             otherKey: "follower_id",
             timeStamps: false
-        }),
+        }), */
         User.hasMany(models.Product, {
-            as: "usersproducts",
-            foreignKey: "product_id",
+            as: "products",
+            foreignKey: "user_id",
         }),
         User.hasMany(models.Comment, {
-            as: "userscomments",
-            foreignKey: "comment_id"
+            as: "comments",
+            foreignKey: "user_id"
         })
     }; 
 

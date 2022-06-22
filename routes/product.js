@@ -17,9 +17,18 @@ let storage = multer.diskStorage({
 var upload = multer({storage: storage});
 
 /* Rutas products */
-router.get("/add", productController.productAdd);
-router.post("/add", upload.single("product"), productController.storeProductAdd);
+ 
+router.get("/:id", productController.detail);
+router.get("/products-add", productController.add);
 
-router.get('/:id?', productController.product);
+router.post("/:id/comment", productController.comment);
+router.post("/delete/:id", productController.deleteComment);
+
+
+router.post("/add/new", upload.single("image"), productController.productStore);
+router.post("/product-delete/:id", productController.delete);
+
+router.get("/product-edit/:id", productController.edit);
+router.post("/product-edit/:id/update", upload.single("image"), productController.productUpdate);
 
 module.exports = router;
