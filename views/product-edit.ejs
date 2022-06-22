@@ -12,24 +12,20 @@
 			<!-- Show the "ultimos" products -->
 			<main class="main registro">	
 				<div class="div-registro">
-					<form class="form-registro" action="/products/product-edit/<%= data.id %>/update" method="POST" enctype="multipart/form-data">
+					<form class="form-registro" action="/products/product-edit/<%= data.id %>" method="POST">
 						<div>
-							<label for="Imagen" class="form-label">Insertá una imagen del producto:</label>
-							<input type="file" name="file" value="" class="form-input">
+							<label for="nombre" class="form-label">Nombre del producto:</label>
+							<input type="text" name="nombre" value="" class="form-input" required>
 
-							<label for="Nombre" class="form-label">Nombre del producto:</label>
-							<input type="text" name="nombre" value="" class="form-input">
+							<label for="descripcion" class="form-label">Descripción del producto:</label>
+							<input type="text" name="descripcion" value="" class="form-input" required>
 
-							<label for="Descripcion" class="form-label">Descripción del producto:</label>
-							<input type="text" name="descripcion" value="" class="form-input">
-
-							<label for="fecha de carga" class="form-label">Fecha de carga:</label>
-							<input type="date" name="fecha" value="" class="form-input">
+							<label for="fecha" class="form-label">Fecha de carga:</label>
+							<input type="date" name="fecha" value="" class="form-input" required>
 
 							<label for="enviar" class="form-label">Hacé clic debajo para guardar los cambios:</label>
 							<input type="submit" name="enviar" class="form-input">
 						</div>
-						<button type="submit">Enviar Producto</button>
 					</form>
 				</div>
 			</main>
