@@ -38,13 +38,11 @@ module.exports = function (sequelize, dataTypes){
         Comment.belongsTo(models.Product, {
             as: "products",
             foreignKey: "product_id",
-/*             onDelete: 'cascade'
- */        }),
+        }),
         Comment.belongsTo(models.User, {
             as: "users",
-            foreignKey: "user_id",
-/*             onDelete: 'SET NULL'
- */        })       
+            foreignKey: "user_id",     
+        })       
     }  
 
     return Comment;

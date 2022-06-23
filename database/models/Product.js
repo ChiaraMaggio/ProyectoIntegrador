@@ -47,12 +47,10 @@ module.exports = function (sequelize, dataTypes){
         Product.belongsTo(models.User, {
             as: "users",
             foreignKey: "user_id",
-/*             onDelete: "NO ACTION"
- */        }),
+        }),
         Product.hasMany(models.Comment, {
             as: "comments",
-            foreignKey: "product_id",
-            /* onDelete: 'cascade' */
+            foreignKey: "product_id", 
         }) 
     };
 
