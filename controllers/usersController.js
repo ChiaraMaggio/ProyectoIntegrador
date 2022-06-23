@@ -124,6 +124,7 @@ let usersController = {
 
     profile: function (req,res) {
        /*  const id = req.params.id */
+       //res.send("hola")
 
         Usuario.findByPk(req.params.id,{
             include:[
@@ -134,18 +135,15 @@ let usersController = {
                 {
                     association: 'products',
                     include: [{association: "comments"}]
-                },
-                {
-                    association: 'followers'
                 }
             ]
         })
         .then( (data) => {
-            console.log(data);
-            if (data == null) {
-                return res.redirect('/')
+            //res.send(data)
+            if (data != null) {
+                return res.render('profile', { data:data })
             } else {
-                return res.render('profile', { data: data })
+                return res.redirect('/')
             }
         })
         .catch((err)=>{
