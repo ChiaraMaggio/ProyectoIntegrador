@@ -1,34 +1,45 @@
-<%- include("./partials/head") %>
+<!DOCTYPE html>
+<html lang="es">
+<!-- Include Head -->
+<head>
+	<%- include("./partials/head") %> 
+</head>
 
 <body>
-	<% if(user != null) { %>  
-		<%- include("./partials/headerLogueado") %>
-	
+	<!-- Header -->
+	<header class="main-header">
+		<% if (user != null) { %>
+			<%- include('./partials/headerLogueado') %> 
+		<% } else { %>
+			<%- include('./partials/header') %> 
+		<% } %>
+	</header>
+	<!-- /Header -->
+
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src= "./images/avatars/<%- data.users.avatar %>" alt="foto de perfil" class="foto-perfil">
+				<img src="/images/avatars<%= data.avatar %>" alt="foto de <%= data.user_name %>" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"> <%= data.users.user_name %> <%= data.users.user_lastname %>  
+					<h1 class="main-title"> <%= data.user_name %>  <%= data.user_lastname %>
 						<% if (locals.user){ %>
 							<% if(locals.user.id == data.id ){ %>
-							<a href="/users/edit/<%= data.id %>">
-							<i class="fas fa-cog"></i>
+							<a href="/users/profileedit/<%= data.id %>">
+							<i id="hover2" class="fas fa-cog"></i>
 							</a>
 							<% } %>
 						<% } %>
 					</h1>
-					<!-- <form action="/users/profile/follower/<%=  %> ">
-						<button type="submit" class=""></button>
-					</form> -->
-					<a class="btn mt-3 ml-4" href="">SEGUIR</a>
 				</div>
 				<div>
-					<ul class="">
-						
+					<ul class="datos">
+						<li>Correo: <%= data.user_email %> </li>
+						<li>Productos: <%= data.products.length %> </li>
+						<li>Seguidores:  </li>
+						<li>Comentarios: <%= data.comments.length %> </li>
 					</ul>
 				</div>
 			</div>
@@ -40,138 +51,41 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Mis productos</h2>
+				<h2 class="products-title">• Mis productos •</h2>
 			</div>
 			<!-- Show mis productos -->
-				<% for (let i = 0; i < user.products.length; i++) {%>
-					<div class="col-12 col-sm-6 col-lg-3">
-						<section class="product-box">
-								<a href="/product/<%= user.products[i].id%>">
-									<div class="product-box_image">
-										<img src="/images/products <%=user.products[i].product_image%>" alt="">
-									</div>
-									<article class="product-box_data">
-										<h2><%=user.products[i].product_name %></h2>
-										<p><%=user.products[i].product_description%> </p>
-										<p><%=user.products[i].franchise%> </p> 
-										<p><%= user.products[i].comments.length %> </p>
-										
-									</article>
-								</a>
-						</section>
-					</div>
-			    <% } %>;
+			<% if(data.products.length != 0) { %>
+			<% for (let i=0; i < data.products.length ; i ++) { %> 	
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/products/<%= data.products[i].id %>">
+							<figure class="product-box_image">
+							<img src="/images/products/<%= data.products[i].product_image %>" alt="foto de producto">	  
+						</figure>
+						<article class="product-box_data">
+							<h2> <%= data.products[i].product_name %> </h2>
+							<p>Descripción: <%= data.products[i].product_description %> </p>
+							<a href="/users/profile/<%= data.id %>"><p class="hover"> Usuario: <%= data.user_name %> <%= data.user_lastname %> </p></a>
+							<p>Comentarios: <%= data.products[i].comments.length %> </p>
+						</article>
+						</a>
+					</section>
+				</div>
+			<% } %> 
+			<% } else { %>
+				<div class="noproduct">
+					<h3>No cargaste ningun producto</h3>
+				</div>
+			<% } %>
 		</div>
 	</div>
-			<!-- <div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product">
-						<figure class="product-box_image">
-							<img src="/images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2>Nombre del producto</h2>
-							<p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p>Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product">
-						<figure class="product-box_image">
-							<img src="/images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2>Nombre del producto</h2>
-							<p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p>Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product">
-						<figure class="product-box_image">
-							<img src="/images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2>Nombre del producto</h2>
-							<p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p>Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product">
-						<figure class="product-box_image">
-							<img src="/images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2>Nombre del producto</h2>
-							<p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p>Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product">
-						<figure class="product-box_image">
-							<img src="/images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2>Nombre del producto</h2>
-							<p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p>Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product">
-						<figure class="product-box_image">
-							<img src="/images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2>Nombre del producto</h2>
-							<p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p>Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product">
-						<figure class="product-box_image">
-							<img src="/images/products/default-image.png" alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2>Nombre del producto</h2>
-							<p>Descripción corta del producto Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque
-								delectus ex</p>
-							<p>Comentarios: 12</p>
-						</article>
-					</a>
-				</section>
-			</div>
-		</div> -->
-	</div>
 	<!-- /Mis productos -->
-	
-	<%- include("./partials/footer") %>
+
+
+	<!-- footer -->
+	<footer class="main-footer">
+		<%- include('./partials/footer') %> 
+	</footer>
+	<!-- /footer -->
 </body>	
 </html>

@@ -30,6 +30,7 @@ router.post("/login", usersController.loginStore);
 router.post("/logout", usersController.logout);
 
 router.get('/profile/:id', usersController.profile);
+router.get('/profileedit/:id', usersController.profileEdit);
 /* router.post("/profile/follower/:id", usersController.profileFollower); */
 
 module.exports = router;
