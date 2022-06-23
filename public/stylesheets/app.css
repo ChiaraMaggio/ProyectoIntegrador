@@ -308,6 +308,16 @@ hr {
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
+  max-width: 1110px;
+ }
+
+.edit-delete-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-box {
+  width: 500px;
 }
 
 .product-detail-img {
@@ -403,7 +413,7 @@ hr {
   background-color: rgb(248, 69, 37);
 }
 .comments {
-  padding: 30px 15px 15px 0;
+  padding: 0px 0px 15px 0;
 }
 .comments article{
   margin-bottom: 7.5px;
@@ -413,8 +423,8 @@ hr {
   justify-content: space-between;
 }
 .comments img{
-  width: 40px;
-  height: 40px;
+  width: 90px;
+  height: 80px;
   border-radius: 50%;
 }
 .comments .data{
@@ -427,6 +437,7 @@ hr {
 }
 .comments .user{
   font-size: 1.7em;
+  padding: 0 0 0 10px;
 }
 
 /*====== Formularios ======*/
