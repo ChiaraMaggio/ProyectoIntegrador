@@ -182,6 +182,10 @@ let usersController = {
         }
     },
 
+    /* profileFollower: function (req, res) {
+        
+    }, */
+
     profileEditStore: function (req, res) {
         if (req.session.User == undefined) {
             return res.redirect("/");

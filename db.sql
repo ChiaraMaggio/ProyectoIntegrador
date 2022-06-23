@@ -12,71 +12,23 @@ CREATE TABLE users(
     updated_at DATETIME
 );
 
-ALTER TABLE users
-ADD follower_id INT UNSIGNED;
-
-ALTER TABLE users
-ADD FOREIGN KEY (follower_id) REFERENCES followers (id);
-
-ALTER TABLE users
-ADD product_id INT UNSIGNED;
-
-ALTER TABLE users
-ADD FOREIGN KEY (product_id) REFERENCES products (id);
-
-ALTER TABLE users
-ADD comment_id INT UNSIGNED;
-
-ALTER TABLE users
-ADD FOREIGN KEY (comment_id) REFERENCES comments (id);
-
-UPDATE users
-SET comment_id = 1
-WHERE id = 1;
-
-UPDATE users
-SET comment_id = 2
-WHERE id = 2;
-
-UPDATE users
-SET comment_id = 3
-WHERE id = 3;
-
-UPDATE users
-SET comment_id = 4
-WHERE id = 5;
-
-UPDATE users   /* actualiza el valor de la columna comments del usuario con id = 5 (antes el valor era 4). ¿Cómo almacenar más de un valor para cada usuario en la db? */
-SET comment_id = 5
-WHERE id = 5;
- 
 INSERT INTO users (id,user_name,user_lastname,birth_date,user_email,user_password,avatar,created_at,updated_at) VALUES(1,"Hugo","Vaca Guzmán","1990-05-12","hvacaguzman@gmail.com","hvacaguzman","/images/users/VacaGuzman.jpg","2022-06-06","2022-06-06");
 INSERT INTO users(id,user_name,user_lastname,birth_date,user_email,user_password,avatar,created_at,updated_at) VALUES(2,"Alberto", "Denham","1995-08-14","adenham@gmail.com","adenham","/images/users/VacaGuzman.jpg","2022-06-06","2022-06-06");
 INSERT INTO users(id,user_name,user_lastname,birth_date,user_email,user_password,avatar,created_at,updated_at)VALUES(3,"Petrona", "Maguna","1999-06-17","pmaguna@gmail.com","pmaguna","/images/users/VacaGuzman.jpg","2022-06-06","2022-06-06");
 INSERT INTO users(id,user_name,user_lastname,birth_date,user_email,user_password,avatar,created_at,updated_at) VALUES(4,"Olga","Maggio","2000-07-26","omaggio@gmail.com","omaggio","/images/users/VacaGuzman.jpg","2022-06-06","2022-06-06");
 INSERT INTO users(id,user_name,user_lastname,birth_date,user_email,user_password,avatar,created_at,updated_at) VALUES(5,"Bernarda","Teperman","1989-04-03","bteperman@gmail.com","bteperman","/images/users/VacaGuzman.jpg","2022-06-06","2022-06-06");
 
-UPDATE users
-SET product_id = 1
-WHERE id = 1;
-
-UPDATE users
-SET product_id = 10
-WHERE id = 2;
-
-UPDATE users
-SET product_id = 12
-WHERE id = 3;
-
-UPDATE users
-SET product_id = 5
-WHERE id = 4;
+ALTER TABLE users
+ADD follower_id INT UNSIGNED;
 
 CREATE TABLE followers(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     user_id INT UNSIGNED NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users (id)
 );
+
+ALTER TABLE users
+ADD FOREIGN KEY (follower_id) REFERENCES followers (id);
 
 CREATE TABLE users_followers(
 	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
@@ -110,12 +62,6 @@ INSERT INTO products(id, product_name, product_description, product_image, franc
 INSERT INTO products(id, product_name, product_description, product_image, franchise, user_id, created_at) VALUES (11,"Funko Pop Iron Man","Figura de Iron Man Funko Pop!","/images/products/funko-ironman.jpg","Franquicia: Marvel",1,"2022-06-06");
 INSERT INTO products(id, product_name, product_description, product_image, franchise, user_id, created_at) VALUES (12,"Funko Pop Carl","Figura de Carl Funko Pop!","/images/products/funko-Carl.jpg","Franquicia: Pixar",2,"2022-06-06");
 INSERT INTO products(id, product_name, product_description, product_image, franchise, user_id, created_at) VALUES (13,"Funko Pop Mickey Mouse","Figura de Mickey Mouse Funko Pop!","/images/products/funko-mickey.jpg","Franquicia: Disney",3,"2022-06-06");
-
-ALTER TABLE products
-ADD comment_id INT UNSIGNED;
-
-ALTER TABLE products
-ADD FOREIGN KEY (comment_id) REFERENCES comments (id);
 
 ALTER TABLE products
 ADD updated_at DATETIME;
@@ -172,6 +118,78 @@ UPDATE products
 SET updated_at = "2022-06-06"
 WHERE id = 13;
 
+ALTER TABLE users
+ADD product_id INT UNSIGNED;
+
+ALTER TABLE users
+ADD FOREIGN KEY (product_id) REFERENCES products (id);
+
+CREATE TABLE comments(
+	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    comment_text VARCHAR(300) NOT NULL,
+    created_at DATETIME,
+    product_id INT UNSIGNED NOT NULL,
+    user_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users (id),
+    FOREIGN KEY (product_id) REFERENCES products (id)
+);
+
+INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(1, "Super tierno. El envío fue re rápido. Llegó a los 2 días.","2022-06-06",3,1);
+INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "El vendedor nunca contestó a mi pedido. Tampoco me dio un reembolso.","2022-06-06",2,2);
+INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Hice compra mayorista y me hizo descuento!! Un genio.","2022-06-06",5,3);
+INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Holaaa, tenés stock para ya?","2022-06-06",5,5);
+INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default,"¿Haces envíos internacionales? Soy de España.","2022-06-06",7,5);
+INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Hice compra mayorista y me hizo descuento!! Un genio.","2022-06-06",8,1);
+INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Super tierno. El envío fue re rápido. Llegó a los 2 días.","2022-06-06",11,2);
+
+ALTER TABLE users
+ADD comment_id INT UNSIGNED;
+
+ALTER TABLE users
+ADD FOREIGN KEY (comment_id) REFERENCES comments (id);
+
+UPDATE users
+SET comment_id = 1
+WHERE id = 1;
+
+UPDATE users
+SET comment_id = 2
+WHERE id = 2;
+
+UPDATE users
+SET comment_id = 3
+WHERE id = 3;
+
+UPDATE users
+SET comment_id = 4
+WHERE id = 5;
+
+UPDATE users   /* actualiza el valor de la columna comments del usuario con id = 5 (antes el valor era 4). ¿Cómo almacenar más de un valor para cada usuario en la db? */
+SET comment_id = 5
+WHERE id = 5; 
+
+UPDATE users
+SET product_id = 1
+WHERE id = 1;
+
+UPDATE users
+SET product_id = 10
+WHERE id = 2;
+
+UPDATE users
+SET product_id = 12
+WHERE id = 3;
+
+UPDATE users
+SET product_id = 5
+WHERE id = 4;
+
+ALTER TABLE products
+ADD comment_id INT UNSIGNED;
+
+ALTER TABLE products
+ADD FOREIGN KEY (comment_id) REFERENCES comments (id);
+
 UPDATE products
 SET comment_id = 1
 WHERE id = 1;
@@ -200,21 +218,45 @@ UPDATE products
 SET comment_id = 7
 WHERE id = 11;
 
-CREATE TABLE comments(
-	id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-    comment_text VARCHAR(300) NOT NULL,
-    created_at DATETIME,
-    product_id INT UNSIGNED NOT NULL,
-    user_id INT UNSIGNED NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users (id),
-    FOREIGN KEY (product_id) REFERENCES products (id)
-);
+ALTER TABLE comments
+ADD updated_at DATETIME;
 
-INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Super tierno. El envío fue re rápido. Llegó a los 2 días.","2022-06-06",1,1);
-INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "El vendedor nunca contestó a mi pedido. Tampoco me dio un reembolso.","2022-06-06",2,2);
-INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Hice compra mayorista y me hizo descuento!! Un genio.","2022-06-06",5,3);
-INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Holaaa, tenés stock para ya?","2022-06-06",5,5);
-INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default,"¿Haces envíos internacionales? Soy de España.","2022-06-06",7,5);
-INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Hice compra mayorista y me hizo descuento!! Un genio.","2022-06-06",8,1);
-INSERT INTO comments(id, comment_text, created_at, product_id,user_id) VALUES(default, "Super tierno. El envío fue re rápido. Llegó a los 2 días.","2022-06-06",11,2);
+UPDATE comments
+SET updated_at = "2022-06-06"
+WHERE id = 1;
+
+UPDATE comments
+SET updated_at = "2022-06-06"
+WHERE id = 2;
+
+UPDATE comments
+SET updated_at = "2022-06-06"
+WHERE id = 3;
+
+UPDATE comments
+SET updated_at = "2022-06-06"
+WHERE id = 4;
+
+UPDATE comments
+SET updated_at = "2022-06-06"
+WHERE id = 5;
+
+UPDATE comments
+SET updated_at = "2022-06-06"
+WHERE id = 6;
+
+UPDATE comments
+SET updated_at = "2022-06-06"
+WHERE id = 7;
+
+ALTER TABLE followers
+ADD created_at DATETIME;
+
+ALTER TABLE followers
+ADD updated_at DATETIME;
+
+
+
+
+
 
