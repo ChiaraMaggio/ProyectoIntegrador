@@ -19,13 +19,13 @@ var upload = multer({storage: storage});
 /* Rutas products */
  
 router.get("/:id", productController.detail);
-router.get("/products-add", productController.add);
+router.get("/product/new", productController.add);
 
 router.post("/:id/comment", productController.comment);
 router.post("/delete/:id", productController.deleteComment);
 
 
-router.post("/add/new", upload.single("image"), productController.productStore);
+router.post("/product/new", upload.single("image"), productController.productStore);
 router.post("/product-delete/:id", productController.delete);
 
 router.get("/product-edit/:id", productController.edit);

@@ -68,34 +68,35 @@ let productController = {
     },
     
     productStore: function(req, res){ /* FALTA CORREGIR */
-        let errors = {}
+    if(req.session.user){
 
-        if(req.body.product_name == ""){
-            errors.message = "El nombre del producto es obligatorio",
-            res.locals.errors = errors;
-            return res.render('products-add')
-        } else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg'){
-            errors.message = "El archivo debe ser una imagen";
-            res.Locals.errors = errors;
-            return res.render('products-add')
-        } else if (req.body.description == ""){
-            errors.message = "La descripción del producto es obligatoria";
-            res.locals.errors = errors;
-            return res.render('products-add')
-        } else {
-            let product = {
-                product_name: req.body.product_name,
-                product_description: req.body.product_description,
-                product_image: req.file.filename,
-                user_id: req.session.user_id,
-            }
-            db.Product.create(product)
-                .then( productoGuardado => {
-                    return res.redirect("/")
+        if (req.body.name == ""){
+             errors.message = "El nombre es obligatorio"
+             res.locals.errors = errors;
+             return res.render('product-add')
+        }else if (req.file.mimetype !== 'image/png' && req.file.mimetype !== 'image/jpg' && req.file.mimetype !== 'image/jpeg') {
+              errors.message = "El archivo debe ser una imagen"
+              res.locals.errors = errors;
+              return res.render('product-add')
+        }else{
+              let products = {
+              users_id: req.session.user.id,
+              image: req.file.filename,
+              name: req.body.name,
+              description: req.body.description,
+              }
+             Producto.create (products)
+                 .then( function(productGuardado) {
+                     return res.redirect('/')
+                  })
+                  .catch(error => {
+                    console.log(error)
                 })
-                .catch(error => console.log(error))
-            }
-        },
+       }
+    }else{
+      return res.redirect('/users/login')
+    }
+    },
     
     edit: function(req, res) {
         if(req.session.user){

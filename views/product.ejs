@@ -8,7 +8,19 @@
 	<% } %> 
 		
 	<!-- product detail -->
-	
+	<% if(data.id = null){ %> 
+		<h3 class="noproduct">No pudimos encontrar el producto que buscás.</h3>
+	<% } else { %>
+	<div class="container products-wrapper">
+		<div class="d-flex align-items-center">
+			<section class="title-align">
+				<h2 class="product-title-detailed"> Publicado por: <a class="hover" href="/users/profile/<%= data.users.id %>"> <%=data.users.user_name %> <%=data.users.iser_lastname%> </a></h2>
+				<a class="img-detailed" href="/users/profile/<%= data.users.id %>"> <img src="/images/avatars/<%= data.users.avatar %>" alt=""></a>
+			</section>
+				
+		<% } %>
+		</div>
+		</div>
 			<div class="product-detail">
 				<div class="rowrow">
 					<article class="col-12 col-lg-8 product-detail-info">
