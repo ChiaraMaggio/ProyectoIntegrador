@@ -81,17 +81,13 @@ let productController = {
         }else{
               let products = {
               user_id: req.session.user.id,
-              image: req.file.filename,
-              name: req.body.name,
-              description: req.body.description,
+              product_image: req.file.filename,
+              product_name: req.body.nombre,
+              product_description: req.body.description,
               }
              Producto.create (products)
-                 .then( function(productGuardado) {
+                 
                      return res.redirect('/')
-                  })
-                  .catch(error => {
-                    console.log(error)
-                })
        }
     }else{
       return res.redirect('/users/login')
