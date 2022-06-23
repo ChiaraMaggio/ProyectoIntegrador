@@ -1,10 +1,9 @@
 const usuario = require("../db/usuario");
-
 const productos = require ("../db/productos");
 const bcryptjs = require("bcryptjs")
 const db = require("../database/models");
-const { localsName } = require("ejs");
 const Usuario = db.User;
+const Op= db.sequelize.Op;
 
 let usersController = {
     register: function (req, res) {
@@ -124,21 +123,17 @@ let usersController = {
     },
 
     profile: function (req,res) {
-        const id = req.params.id
+       /*  const id = req.params.id */
 
-        Usuario.findByPk(id,{
+        Usuario.findByPk(req.params.id,{
             include:[
                 {
                     association: 'comments',
-                    include: {
-                        association: 'users'
-                    }
+                    include: [{association: 'users'}]
                 },
                 {
                     association: 'products',
-                    include: {
-                        association: "comments"
-                    }
+                    include: [{association: "comments"}]
                 },
                 {
                     association: 'followers'
@@ -146,16 +141,16 @@ let usersController = {
             ]
         })
         .then( (data) => {
+            console.log(data);
             if (data == null) {
                 return res.redirect('/')
             } else {
-                return res.render('profile.ejs', { data:data })
+                return res.render('profile', { data: data })
             }
         })
         .catch((err)=>{
-            console.log(err)
+            console.log(err);
         })
-        
     },
 
     profileEdit: function (req,res) {
