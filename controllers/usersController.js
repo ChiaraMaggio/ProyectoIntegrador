@@ -123,12 +123,68 @@ let usersController = {
         res.redirect("/")
     },
 
-    profile: function (req, res) {
-        return res.render("profile", {usuario: usuario.lista[0].nombreDeUsuario, foto: usuario.lista[0].fotoDePerfil, misProductos: usuario.lista[0].cantidadDeProductos, seguidores: usuario.lista[0].cantidadDeSeguidores, comentarios: usuario.lista[0].comentarios, productos:productos});
+    profile: function (req,res) {
+        const id = req.params.id
+
+        Usuario.findByPk(id,{
+            include:[
+                {
+                    association: 'comments',
+                    include: {
+                        association: 'users'
+                    }
+                },
+                {
+                    association: 'products',
+                    include: {
+                        association: "comments"
+                    }
+                },
+                {
+                    association: 'followers'
+                }
+            ]
+        })
+        .then( (data) => {
+            if (data == null) {
+                return res.redirect('/')
+            } else {
+                return res.render('profile.ejs', { data:data })
+            }
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+        
     },
 
-    profileEdit: function (req, res) {
-        return res.render("profile-edit", {usuario: usuario.lista[0].nombreDeUsuario});
+    profileEdit: function (req,res) {
+        const id = req.params.id
+
+        if(req.session.user){
+            if(id != req.session.user.id){
+                return res.redirect(`/users/profileedit/${req.session.user.id}`) /* para hacer que solo el dueño del perfil pueda editar sus datos */
+            }else{
+                db.User.findByPk(id, {
+                    include: [
+                        {association: 'products'},/* Relacion de productos con usuarios */
+                        {association: 'comments'} /* Relacion de productos con comentarios */
+                    ]
+                })
+                .then((data)=>{
+                    if (data == null) {
+                        return res.redirect('/')
+                    } else {
+                        return res.render('profile-edit.ejs', { data:data })
+                    }
+                })
+                .catch((err)=>{
+                    console.log(err)
+                })
+            }
+        }else{
+            res.redirect('/users/login')
+        }
     },
 
     profileEditStore: function (req, res) {

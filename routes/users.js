@@ -16,8 +16,7 @@ let storage = multer.diskStorage({
 
 var upload = multer({storage: storage});
 
-/* Rutas users */
-router.get('/profile', usersController.profile);
+
 
 router.get("/edit", usersController.profileEdit);
 router.post("/edit", usersController.profileEditStore);
@@ -29,5 +28,8 @@ router.get("/login", usersController.login);
 router.post("/login", usersController.loginStore);
 
 router.post("/logout", usersController.logout);
+
+/* Rutas users */
+router.get('/profile/:id', usersController.profile);
 
 module.exports = router;
