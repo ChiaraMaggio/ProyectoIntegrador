@@ -21,15 +21,16 @@ module.exports = function (sequelize, dataTypes){
 
     const Follower = sequelize.define(alias, cols, config);
     
-    /* Follower.associate = function(models) {
-        Follower.belongsToMany(models.User, {
-            as: "usersfollowers",
-            through: "users_followers",
-            foreignKey: "follower_id",
-            otherKey: "user_id",
-            timeStamps: false
+    Follower.associate = function(models){
+        Follower.belongsTo(models.User,{
+            as: 'users',
+            foreignKey:'user_id',
         })
-    };  */
+        /* Follower.belongsTo(models.User,{
+            as: 'usersFollowed',
+            foreignKey:'followed_id',
+        }) */
+    }
 
     return Follower;
 }
