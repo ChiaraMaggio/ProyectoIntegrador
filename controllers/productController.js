@@ -80,7 +80,7 @@ let productController = {
               return res.render('product-add')
         }else{
               let products = {
-              users_id: req.session.user.id,
+              user_id: req.session.user.id,
               image: req.file.filename,
               name: req.body.name,
               description: req.body.description,

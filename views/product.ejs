@@ -8,38 +8,6 @@
 	<% } %> 
 		
 	<!-- product detail -->
-<<<<<<< HEAD
-	<% if(data.id = null){ %> 
-		<h3 class="noproduct">No pudimos encontrar el producto que buscás.</h3>
-	<% } else { %>
-	<div class="container products-wrapper">
-		<div class="d-flex align-items-center">
-			<section class="title-align">
-				<h2 class="product-title-detailed"> Publicado por: <a class="hover" href="/users/profile/<%= data.users.id %>"> <%=data.users.user_name %> <%=data.users.iser_lastname%> </a></h2>
-				<a class="img-detailed" href="/users/profile/<%= data.users.id %>"> <img src="/images/avatars/<%= data.users.avatar %>" alt=""></a>
-			</section>
-				
-		<% } %>
-		</div>
-		</div>
-			<div class="product-detail">
-				<div class="rowrow">
-					<article class="col-12 col-lg-8 product-detail-info">
-						<h3 class="product-detail-description"><%= data.product_name %> </h3>
-						<img src="/images/products/<%= data.product_image %>" alt="Imagen" ><p class="product-detail-description"><%= data.product_description %></p>
-					<article>
-						<% if (locals.user){ %> 
-							<% if (locals.user.id == data.user_id){ %> 
-								<div>
-									<form action="/products/product-edit/<%= data.id %> " >
-										<button type="submit"> Editar <i class="fa fa-pen"></i> </button>
-									</form>
-									<form action="/products/product-delete/<%= data.id %>" method="POST">
-										<button type="submit"> Eliminar <i class="fas fa-trash"></i> </button>
-									</form>
-								</div>
-							<% } %>
-=======
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= data.product_name %></h2> 
@@ -65,7 +33,6 @@
 									<button class="form-input" type="submit"> Eliminar <i class="fas fa-trash"></i> </button>
 								</form>
 							</div>
->>>>>>> 28f5702a37455c4c9f66ac54258ca6e6c4138599
 						<% } %>
 					<% } %>
 				</article>
