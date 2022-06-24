@@ -179,18 +179,76 @@ let usersController = {
             res.redirect('/users/login')
         }
     },
-
-    /* profileFollower: function (req, res) {
-        
-    }, */
-
-    profileEditStore: function (req, res) {
-        if (req.session.User == undefined) {
-            return res.redirect("/");
-        } else {
-
+    /*
+    profileStore: function(req,res){
+        const user = {
+            user_name: req.body.nombre,
+            user_lastname: req.body.apellido,
+            user_email: req.body.email,
+            birth_date: req.body.nacimiento,
+            user_password: bcryptjs.hashSync(req.body.password, 10),
+            avatar: req.file.filename
         }
-    }
+
+        if (req.file == undefined) {
+            user.avatar = req.session.user.avatar;
+        } else {
+            user.avatar = req.file.filename;
+        }
+
+        db.User.update(user, {
+                where: {
+                    id: req.session.user.id
+                }
+            })
+            .then(function(){
+                
+                user.id = req.session.user.id
+
+                return res.redirect( `/users/profile/${user.id}` )
+            })
+            .catch(error => {
+                console.log(error)
+            }) 
+    },
+    
+    profileFollowerStore: function(req,res){
+      
+        if(req.session.user){
+            
+            let follow = {
+            user_id: req.session.user.id,
+            followed_id: req.params.id
+            }
+
+        db.Follower.create(follow)
+        return res.redirect(`/users/profile/${req.params.id}`)
+
+        
+        }else{
+            return res.redirect('/users/login')
+        }
+        
+    },
+    profileFollower: function(req,res){
+
+        db.Follower.findAll({
+            where: {
+                followed_id : req.params.id
+            },
+            include: [
+                {association: 'followers'},
+                {association: 'followed'} 
+            ]
+        })
+        .then((data)=>{
+            return res.render('profile',{ followdata : data})
+        })
+        .catch(error => {
+            console.log(error)
+        }) 
+
+    } */
 }
 
 module.exports = usersController;
