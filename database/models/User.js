@@ -55,7 +55,7 @@ module.exports = function (sequelize, dataTypes){
         User.hasMany(models.Follower,{
             as:"followers",
             foreignKey: "user_id"
-        })
+        }),
         User.hasMany(models.Follower,{
             as:"followed",
             foreignKey: "followed_id"

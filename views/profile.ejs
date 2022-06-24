@@ -33,11 +33,15 @@
 							<% } %>
 						<% } %>
 					</h1>
+					<!-- FORM PARA SEGUIR USUARIOS -->
+					<!-- <form action="/users/profile/follower/ (tags ejs)" method="POST">
+						<button type="submit" class="buy-now-button">SEGUIR</button>
+					</form> -->
 				</div>
 				<div>
 					<ul class="datos">
 						<li>Correo: <%= data.user_email %> </li>
-						<li>Productos: <%= data.products.length %> </li>
+						<li>Productos publicados: <%= data.products.length %> </li>
 						<li>Seguidores:  </li>
 						<li>Comentarios: <%= data.comments.length %> </li>
 					</ul>
@@ -63,7 +67,8 @@
 						<article class="product-box_data">
 							<h2> <%= data.products[i].product_name %> </h2>
 							<p>Descripción: <%= data.products[i].product_description %> </p>
-							<a href="/users/profile/<%= data.id %>"><p class="hover"> Usuario: <%= data.user_name %> <%= data.user_lastname %> </p></a>
+							<a href="/users/profile/<%= data.id %>">
+							<p class="hover"> Usuario: <%= data.user_name %> <%= data.user_lastname %> </p></a>
 							<p>Comentarios: <%= data.products[i].comments.length %> </p>
 						</article>
 						</a>

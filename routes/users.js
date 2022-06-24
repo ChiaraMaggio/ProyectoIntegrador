@@ -17,10 +17,6 @@ let storage = multer.diskStorage({
 var upload = multer({storage: storage});
 
 
-
-router.get("/edit", usersController.profileEdit);
-router.post("/edit", usersController.profileEditStore);
-
 router.get("/register", usersController.register);
 router.post("/register", upload.single("avatar"), usersController.registerStore); /* parámentro entre la ruta y el controlador que hace referencia al archivo que se envía por el método post */
 
@@ -30,7 +26,15 @@ router.post("/login", usersController.loginStore);
 router.post("/logout", usersController.logout);
 
 router.get('/profile/:id', usersController.profile);
+
 router.get('/profileedit/:id', usersController.profileEdit);
-/* router.post("/profile/follower/:id", usersController.profileFollower); */
+router.post("/profileedit/:id", usersController.profileEditStore);
+
+
+/* Rutas followers
+router.get('/profile/follower/:id', usersController.profileFollower);
+router.post('/profile/follower/:id', usersController.profileFollowerStore); */
+ 
+
 
 module.exports = router;

@@ -178,10 +178,6 @@ let usersController = {
         }
     },
 
-    /* profileFollower: function (req, res) {
-        
-    }, */
-
     profileEditStore: function (req, res) {
         const user = {
             user_name: req.body.nombre,
