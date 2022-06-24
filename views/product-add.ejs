@@ -11,26 +11,26 @@
 			</div>
 			<main class="main registro">
 				<div class="div-registro">
-					<form class="form-register" action="/products/product/new" method="POST" enctype="multipart/form-data">
+					<form action="/products/product/new" method="POST" enctype="multipart/form-data">
 						<% if (locals.errors) { %>
 							<p class="error"><%= errors.message %>  </p>
 						<% } %>
 						
 						<div>
-							<label label for="image" class="form-label">Imagen:</label>
+							<label label for="image" class="form-label">Agregá la imagen de tu producto:</label>
 							<input type="file" name="image" value="" class="form-input" required>
 						</div>
 						<div>
-							<label label for="nombre" class="form-label">Nombre del Producto:</label>
+							<label label for="nombre" class="form-label">Nombre del producto:</label>
 							<input type="text" name="nombre" value="" class="form-input" required>
 						</div>
 						<div>
-							<label label for="description" class="form-label">Descripcion:</label>
+							<label label for="description" class="form-label">Descripción:</label>
 							<input type="text" name="description" value="" class="form-input" required>
 						</div>
 						<div>
-						
-						<button type="submit">Enviar</button>
+						<button class="form-input" type="submit">Enviar</button>
+						</div>
 					</form>
 				</div>
 			</main>		

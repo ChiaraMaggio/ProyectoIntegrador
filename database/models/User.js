@@ -33,15 +33,6 @@ module.exports = function (sequelize, dataTypes){
             allowNull: true,
             type: dataTypes.DATE
         },
-        follower_id: {
-            type: dataTypes.INTEGER
-        },
-        product_id:{
-            type: dataTypes.INTEGER
-        },
-        comment_id:{
-            type: dataTypes.INTEGER
-        }
     };
     
     let config = {
@@ -65,10 +56,10 @@ module.exports = function (sequelize, dataTypes){
             as:"followers",
             foreignKey: "user_id"
         })
-        /* User.hasMany(models.Follower,{
+        User.hasMany(models.Follower,{
             as:"followed",
             foreignKey: "followed_id"
-        }) */
+        })
     }; 
 
     return User;

@@ -123,8 +123,6 @@ let usersController = {
     },
 
     profile: function (req,res) {
-       /*  const id = req.params.id */
-       //res.send("hola")
 
         Usuario.findByPk(req.params.id,{
             include:[
@@ -185,11 +183,31 @@ let usersController = {
     }, */
 
     profileEditStore: function (req, res) {
-        if (req.session.User == undefined) {
-            return res.redirect("/");
-        } else {
-
+        const user = {
+            user_name: req.body.nombre,
+            user_lastname: req.body.apellido,
+            user_email: req.body.email,
+            birth_date: req.body.nacimiento,
+            user_password: bcryptjs.hashSync(req.body.password, 10),
+            avatar: ""
         }
+
+        if (req.file == undefined) {
+            user.avatar = req.session.user.avatar;
+        } else {
+            user.avatar = req.file.filename;
+        }
+
+        /* no esta actualizando los datos todavia */
+        Usuario.update(user, {
+            where: {id: req.session.user.id}
+        })
+        .then(function(){
+            return res.redirect(`/users/profile/${req.session.user.id}`)
+        })
+        .catch(error => {
+            console.log(error)
+        }) 
     }
 }
 
